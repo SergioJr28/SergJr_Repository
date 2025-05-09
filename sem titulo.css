@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cristiano Ronaldo - Lenda do Futebol</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            color: #333;
+        }
+
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+            background-color: white;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .attachment {
+            background-color: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Cristiano Ronaldo</h1>
+    <p>Um dos maiores jogadores de futebol de todos os tempos</p>
+</header>
+
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#carreira">Carreira</a>
+    <a href="#titulos">Títulos</a>
+    <a href="#galeria">Galeria</a>
+    <a href="#anexos">Anexos</a>
+</nav>
+
+<main>
+    <section id="inicio">
+        <h2>Biografia</h2>
+        <p>Cristiano Ronaldo dos Santos Aveiro nasceu em 5 de fevereiro de 1985, na ilha da Madeira, Portugal. Desde jovem, mostrou talento no futebol, o que o levou a ingressar no Sporting de Lisboa, e posteriormente ser contratado pelo Manchester United.</p>
+        <img src="c:\Users\aluno.sesicabo\Downloads\41e14da3-0f66-40b2-a760-fd66f31abb4c.jpg" alt="Cristiano Ronaldo">
+    </section>
+
+    <section id="carreira">
+        <h2>Carreira</h2>
+        <ul>
+            <li><strong>Sporting (2002–2003):</strong> Início da carreira profissional em Portugal.</li>
+            <li><strong>Manchester United (2003–2009):</strong> Três títulos da Premier League e sua primeira Bola de Ouro.</li>
+            <li><strong>Real Madrid (2009–2018):</strong> Quebrou inúmeros recordes e venceu quatro Ligas dos Campeões.</li>
+            <li><strong>Juventus (2018–2021):</strong> Conquistou a Serie A e foi destaque na Itália.</li>
+            <li><strong>Manchester United (2021–2022):</strong> Retorno ao clube inglês.</li>
+            <li><strong>Al-Nassr (2023–presente):</strong> Atual clube, jogando na Arábia Saudita.</li>
+        </ul>
+    </section>
+
+    <section id="titulos">
+        <h2>Principais Títulos</h2>
+        <ul>
+            <li>5x Liga dos Campeões</li>
+            <li>3x Premier League</li>
+            <li>2x La Liga</li>
+            <li>2x Serie A</li>
+            <li>Eurocopa 2016</li>
+            <li>Liga das Nações 2019</li>
+            <li>5x Bola de Ouro</li>
+        </ul>
+    </section>
+
+    <section id="galeria">
+        <h2>Galeria de Imagens</h2>
+        <img src="c:\Users\aluno.sesicabo\Downloads\72b16dfe-5fb6-40a4-b009-be02add2a091.jpg" alt="Cristiano na Copa do Mundo">
+        <img src="c:\Users\aluno.sesicabo\Downloads\f284bc36-266d-4761-84df-a7e95c1affa0.jpg" alt="Cristiano na Juventus">
+        <img src="c:\Users\aluno.sesicabo\Downloads\ce02351a-8e29-470d-84ac-3cb00d685597.jpg" alt="Cristiano no Real Madrid">
+    </section>
+
+    <section id="anexos">
+        <h2>Anexos</h2>
+        <div class="attachment">
+            📎 <a href="https://www.fifa.com/fifaplus/en/players/cristiano-ronaldo" target="_blank">Perfil oficial na FIFA</a>
+        </div>
+        <div class="attachment">
+            📎 <a href="https://pt.wikipedia.org/wiki/Cristiano_Ronaldo" target="_blank">Biografia completa na Wikipédia</a>
+        </div>
+        <div class="attachment">
+            📎 <a href="https://www.transfermarkt.com/cristiano-ronaldo/profil/spieler/8198" target="_blank">Estatísticas no Transfermarkt</a>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2025 - Site criado para fins educativos sobre Cristiano Ronaldo.</p>
+</footer>
+
+</body>
+</html> <div class="share">
+    <h3>Compartilhe este site</h3>
+    <a href="c:\Users\aluno.sesicabo\Desktop\sergio.Jr\Untitled-1.html" target="_blank"> </a>Compartilhar
+</div>
