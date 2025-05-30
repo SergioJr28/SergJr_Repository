@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>S&C Exports - Loja de Artigos Esportivos</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset & base styling */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: #fafafa;
+    color: #2c3e50;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  /* Container */
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  /* Header */
+  header {
+    background: #004a99;
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1100;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+  }
+  header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    user-select: none;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav ul li a {
+    font-weight: 600;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  nav ul li a:hover,
+  nav ul li a:focus {
+    background: #ffc107;
+    color: #004a99;
+    outline: none;
+  }
+  /* Search bar */
+  #search-bar {
+    position: relative;
+    margin-left: 1rem;
+  }
+  #search-input {
+    border-radius: 20px;
+    border: none;
+    padding: 0.4rem 1rem;
+    font-size: 1rem;
+    outline: none;
+    width: 220px;
+    transition: width 0.4s ease;
+  }
+  #search-input:focus {
+    width: 280px;
+  }
+  /* Hero */
+  #hero {
+    background: url('https://images.unsplash.com/photo-1526401281627-7d1b91e9bb2d?auto=format&fit=crop&w=1470&q=80') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    margin-bottom: 3rem;
+  }
+  #hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 74, 153, 0.65);
+    z-index: 0;
+  }
+  #hero h1 {
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    z-index: 1;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+  }
+  /* Main content layout */
+  main.container {
+    display: flex;
+    gap: 2rem;
+  }
+  /* Sidebar Brands */
+  aside#brands-sidebar {
+    flex: 0 0 220px;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgb(0 0 0 / 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+  }
+  aside#brands-sidebar h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #004a99;
+  }
+  .brand-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .brand-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  .brand-item:hover,
+  .brand-item:focus {
+    background: #eaf1fc;
+    outline: none;
+  }
+  .brand-item img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+  }
+  .brand-item span {
+    font-weight: 600;
+    color: #004a99;
+  }
+  /* Product Section */
+  section#products-section {
+    flex: 1 1 auto;
+  }
+  #products-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #004a99;
+    text-align: center;
+  }
+  #products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 1.8rem;
+  }
+  .product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 40px rgb(0 0 0 / 0.17);
+    outline: none;
+  }
+  .product-image {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    user-select: none;
+  }
+  .product-info {
+    padding: 1rem 1.3rem 1.5rem 1.3rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+    color: #004a99;
+  }
+  .product-brand {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0.9rem;
+  }
+  .product-price {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #d32f2f;
+  }
+  .btn-add-cart {
+    align-self: center;
+    background: #ffc107;
+    color: #004a99;
+    border: none;
+    padding: 0.7rem 1.7rem;
+    font-weight: 700;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    box-shadow: 0 6px 15px rgb(255 193 7 / 0.4);
+  }
+  .btn-add-cart:hover,
+  .btn-add-cart:focus {
+    background: #ffca28;
+    outline: none;
+  }
+  /* Cart Sidebar */
+  #cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* hidden by default */
+    width: 340px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.25);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    transition: right 0.4s ease;
+    z-index: 1200;
+    border-radius: 12px 0 0 12px;
+  }
+  #cart-sidebar.open {
+    right: 0;
+  }
+  #cart-sidebar h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    color: #004a99;
+    text-align: center;
+  }
+  #close-cart-btn {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #004a99;
+  }
+  #cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+  }
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 0.8rem;
+  }
+  .cart-item-info {
+    flex-grow: 1;
+  }
+  .cart-item-name {
+    font-weight: 600;
+    color: #004a99;
+    margin-bottom: 0.3rem;
+  }
+  .cart-item-brand {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #777;
+  }
+  .cart-item-price {
+    font-weight: 700;
+    color: #d32f2f;
+  }
+  .cart-item-qty {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .qty-btn {
+    border: 1.8px solid #004a99;
+    background: transparent;
+    color: #004a99;
+    font-weight: 700;
+    border-radius: 4px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background-color 0.2s ease;
+  }
+  .qty-btn:hover, .qty-btn:focus {
+    background-color: #eaf1fc;
+    outline: none;
+  }
+  #cart-total {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #004a99;
+    text-align: center;
+    padding-top: 0.8rem;
+    border-top: 1.5px solid #e3e3e3;
+    margin-bottom: 1rem;
+  }
+  #cart-checkout-btn {
+    background: #004a99;
+    color: white;
+    font-weight: 700;
+    padding: 0.8rem;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background 0.3s ease;
+  }
+  #cart-checkout-btn:hover,
+  #cart-checkout-btn:focus {
+    background: #00306f;
+    outline: none;
+  }
+  /* Open cart button */
+  #open-cart-btn {
+    position: fixed;
+    top: 85px;
+    right: 20px;
+    background: #ffc107;
+    padding: 0.85rem 1.3rem;
+    border-radius: 40px;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgb(255 193 7 / 0.5);
+    z-index: 1150;
+    transition: background 0.3s ease;
+  }
+  #open-cart-btn:hover,
+  #open-cart-btn:focus {
+    background: #ffca28;
+    outline: none;
+  }
+  /* Scrollbar styling for cart items */
+  #cart-items::-webkit-scrollbar {
+    width: 6px;
+  }
+  #cart-items::-webkit-scrollbar-thumb {
+    background: #004a99;
+    border-radius: 10px;
+  }
+  /* Responsive */
+  @media (max-width: 900px) {
+    main.container {
+      flex-direction: column;
+    }
+    aside#brands-sidebar {
+      position: relative;
+      top: auto;
+      width: 100%;
+      margin-bottom: 2rem;
+      height: auto;
+      box-shadow: none;
+      border-radius: 15px;
+    }
+    #cart-sidebar {
+      width: 100%;
+      height: 100vh;
+      right: -100%;
+      border-radius: 0;
+    }
+    #cart-sidebar.open {
+      right: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container" role="banner" aria-label="Cabeçalho principal da página">
+    <div class="logo" aria-label="Logotipo Centauro">C&S Exports</div>
+    <nav aria-label="Menu principal">
+      <ul>
+        <li><a href="#brands-sidebar">Marcas</a></li>
+        <li><a href="#products-section">Produtos</a></li>
+        <li><a href="#cart-sidebar" id="nav-cart-link">Carrinho</a></li>
+      </ul>
+    </nav>
+    <div id="search-bar" role="search">
+      <input type="search" id="search-input" placeholder="Pesquisar produtos ou marcas..." aria-label="Pesquisar produtos ou marcas" />
+    </div>
+  </div>
+</header><div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAGoxOiGum8/CreihTlySS3w8BFOAp6-7Q/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+<a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGoxOiGum8&#x2F;CreihTlySS3w8BFOAp6-7Q&#x2F;view?utm_content=DAGoxOiGum8&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">Bem Vindos a C&amp;S Exports</a> de Sérgioゾルディック
+
+<section id="hero" role="img" aria-label='https://www.canva.com/design/DAGoxOiGum8/Eh36VrUIR-44eIQfQCD-WQ/view?utm_content=DAGoxOiGum8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h28a8ec928d'>
+  <h1>Encontre os melhores produtos esportivos</h1>
+</section>
+
+<main class="container">
+  <aside id="brands-sidebar" tabindex="0" aria-label="Lista de marcas de produtos esportivos">
+    <h2>Marcas</h2>
+    <div class="brand-list" id="brand-list">
+      <!-- Brand items inserted by JS -->
+    </div>
+  </aside>
+
+  <section id="products-section" aria-label="Produtos disponíveis">
+    <h2>Produtos</h2>
+    <div id="products-grid" tabindex="0">
+      <!-- Product cards inserted by JS -->
+    </div>
+  </section>
+</main>
+
+<button id="open-cart-btn" aria-label="Abrir carrinho de compras">Carrinho 🛒 (<span id="cart-count">0</span>)</button>
+
+<aside id="cart-sidebar" aria-label="Carrinho de compras">
+  <button id="close-cart-btn" aria-label="Fechar carrinho">&times;</button>
+  <h2>Seu Carrinho</h2>
+  <div id="cart-items" tabindex="0" aria-live="polite" aria-relevant="additions removals"></div>
+  <div id="cart-total" aria-atomic="true">Total: R$ 0,00</div>
+  <button id="cart-checkout-btn" aria-label="Finalizar compra">Finalizar Compra</button>
+</aside>
+
+<script>
+  // Data
+  const brands = [
+    { id: 'nike', name: 'Nike', logo: 'c:\Users\aluno.sesicabo\Downloads\design for Nike shoes.jpg' },
+    { id: 'adidas', name: 'Adidas', logo: 'https://seeklogo.com/images/A/adidas-logo-737BEE7742-seeklogo.com.png' },
+    { id: 'puma', name: 'Puma', logo: 'https://seeklogo.com/images/P/puma-logo-6A55854394-seeklogo.com.png' },
+    { id: 'Joma', name: 'Joma', logo: 'https://seeklogo.com/images/U/under-armour-logo-DC1B9011F4-seeklogo.com.png' },
+    { id: 'Assics', name: 'Assics', logo: 'https://seeklogo.com/images/R/reebok-logo-CBED0AD4D8-seeklogo.com.png' }
+  ];
+
+  const products = [
+    { id: 1, name: 'Chuteira Nike Air Zoom Mercurial Superfly 10 Elite', brand: 'nike', price: 299.90, image:'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/2d2a00fc-5de8558685ef0941cd17473403837392-1024-1024.webp' },
+    { id: 2, name: 'Chuteria Nike Air Zoom Mercurial Vapor 16 Elite', brand: 'nike', price: 249.99, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/ef0a74c8-32c3eab179870a64a517460777959979-480-0.webp' },
+    { id: 3, name: 'Chuteria Puma Future Ultimate', brand: 'puma', price: 269.90, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/0f24e7a11-b2e8b893cfb05b3d1716874575256082-480-0.webp' },
+    { id: 4, name: 'Chuteira Puma Future 2024', brand: 'puma', price: 269.90, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/0a58c6f9-0354047391b2a3c65217264579346223-480-0.webp' },
+    { id: 5, name: 'Tênis Asiac Indoor Futsal', brand: 'assics', price: 240.00, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/4cd461301-9195b66dacd1fbacfb16909248014505-480-0.webp' },
+    { id: 6, name: 'Tênis Asiac Indoor Futsal', brand: 'assics', price: 229.99, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/60eedf951-ecb98dcb01a0bacb6e16909246781302-480-0.webp' },
+    { id: 7, name: 'Chuteira Adidas Predador Elite Tongue', brand: 'adidas', price: 239.90, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/a425f444-4a40a0aa957158c8bd17083148356194-480-0.webp' },
+    { id: 8, name: 'Chuteira Adidas Limited-Edition 11 Pro Tk', brand: 'adidas', price: 250.00, image: 'https://dcdn-us.mitiendanube.com/stores/003/350/225/products/de41b907-203217e2610f31601d17054692598984-480-0.webp' },
+    { id: 9, name: 'Joma Top Flex Rebound', brand: 'joma', price: 199.90, image: 'https://m.media-amazon.com/images/I/71g8HhSxM0L._AC_SX695_.jpg' },
+    { id: 10, name: 'Tênis CrossFit Reebok', brand: 'joma', price: 229.00, image: 'https://m.media-amazon.com/images/I/71PGtoQ8Y1L._AC_SX695_.jpg' }
+  ];
+
+  // Elements
+  const brandListEl = document.getElementById('brand-list');
+  const productsGridEl = document.getElementById('products-grid');
+  const searchInputEl = document.getElementById('search-input');
+  const openCartBtn = document.getElementById('open-cart-btn');
+  const cartSidebar = document.getElementById('cart-sidebar');
+  const closeCartBtn = document.getElementById('close-cart-btn');
+  const cartItemsEl = document.getElementById('cart-items');
+  const cartTotalEl = document.getElementById('cart-total');
+  const cartCountEl = document.getElementById('cart-count');
+  const cartCheckoutBtn = document.getElementById('cart-checkout-btn');
+
+  // Cart data in local storage key
+  const CART_STORAGE_KEY = 'centauroCart';
+
+  // Load cart from localStorage or empty
+  let cart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || {};
+
+  // Render brands
+  function renderBrands() {
+    brands.forEach(brand => {
+      const div = document.createElement('div');
+      div.className = 'brand-item';
+      div.tabIndex = 0;
+      div.role = 'button';
+      div.setAttribute('aria-pressed', 'false');
+      div.innerHTML = `<img src="${brand.logo}" alt="${brand.name} logo" loading="lazy" /> <span>${brand.name}</span>`;
+      div.addEventListener('click', () => {
+        filterByBrand(brand.id);
+      });
+      div.addEventListener('keypress', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          filterByBrand(brand.id);
+        }
+      });
+      brandListEl.appendChild(div);
+    });
+
+    // Add a "Mostrar todos" button
+    const allBtn = document.createElement('div');
+    allBtn.className = 'brand-item';
+    allBtn.tabIndex = 0;
+    allBtn.role = 'button';
+    allBtn.setAttribute('aria-pressed', 'false');
+    allBtn.innerHTML = `<span>Mostrar todos</span>`;
+    allBtn.style.justifyContent = 'center';
+    allBtn.style.fontWeight = '700';
+    allBtn.style.color = '#004a99';
+    allBtn.addEventListener('click', () => {
+      renderProducts(products);
+      clearBrandSelection();
+      searchInputEl.value = '';
+    });
+    allBtn.addEventListener('keypress', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        renderProducts(products);
+        clearBrandSelection();
+        searchInputEl.value = '';
+      }
+    });
+    brandListEl.appendChild(allBtn);
+  }
+  function clearBrandSelection() {
+    const items = brandListEl.querySelectorAll('.brand-item');
+    items.forEach(item => item.setAttribute('aria-pressed', 'false'));
+  }
+  // Render products cards
+  function renderProducts(list) {
+    productsGridEl.innerHTML = '';
+    if (list.length === 0) {
+      productsGridEl.innerHTML = '<p style="text-align:center; font-size:1.2rem; padding:2rem; color:#555;">Nenhum produto encontrado.</p>';
+      return;
+    }
+    list.forEach(product => {
+      const productCard = document.createElement('article');
+      productCard.className = 'product-card';
+      productCard.tabIndex = 0;
+      productCard.setAttribute('aria-label', `${product.name}, marca ${brands.find(b => b.id === product.brand).name}, preço R$ ${product.price.toFixed(2)}`);
+
+      productCard.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy" />
+        <div class="product-info">
+          <h3 class="product-name">${product.name}</h3>
+          <div class="product-brand">${brands.find(b => b.id === product.brand).name}</div>
+          <div class="product-price">R$ ${product.price.toFixed(2).replace('.', ',')}</div>
+          <button class="btn-add-cart" type="button" aria-label="Adicionar ${product.name} ao carrinho">Adicionar</button>
+        </div>
+      `;
+      const btnAdd = productCard.querySelector('.btn-add-cart');
+      btnAdd.addEventListener('click', () => addToCart(product.id));
+      productsGridEl.appendChild(productCard);
+    });
+  }
+
+  // Add to cart
+  function addToCart(productId) {
+    if (cart[productId]) {
+      cart[productId]++;
+    } else {
+      cart[productId] = 1;
+    }
+    saveCart();
+    renderCart();
+    alert('Produto adicionado ao carrinho!');
+  }
+
+  // Remove from cart
+  function removeFromCart(productId) {
+    delete cart[productId];
+    saveCart();
+    renderCart();
+  }
+
+  // Change qty
+  function changeQty(productId, delta) {
+    if (!cart[productId]) return;
+    cart[productId] += delta;
+    if (cart[productId] <= 0) {
+      removeFromCart(productId);
+    } else {
+      saveCart();
+    }
+    renderCart();
+  }
+
+  // Render cart sidebar
+  function renderCart() {
+    cartItemsEl.innerHTML = '';
+    const productIds = Object.keys(cart);
+    if (productIds.length === 0) {
+      cartItemsEl.innerHTML = '<p style="text-align:center; color:#666; margin-top:40px;">Seu carrinho está vazio.</p>';
+      cartTotalEl.textContent = 'Total: R$ 0,00';
+      cartCountEl.textContent = '0';
+      cartCheckoutBtn.disabled = true;
+      return;
+    }
+    cartCheckoutBtn.disabled = false;
+
+    let total = 0;
+    productIds.forEach(pid => {
+      const product = products.find(p => p.id == pid);
+      const qty = cart[pid];
+      if (!product) return;
+      total += product.price * qty;
+
+      const cartItem = document.createElement('div');
+      cartItem.className = 'cart-item';
+      cartItem.tabIndex = 0;
+      cartItem.setAttribute('aria-label', `${product.name}, quantidade ${qty}, preço unitário R$ ${product.price.toFixed(2)}`);
+
+      cartItem.innerHTML = `
+        <div class="cart-item-info">
+          <div class="cart-item-name">${product.name}</div>
+          <div class="cart-item-brand">${brands.find(b => b.id === product.brand).name}</div>
+        </div>
+        <div class="cart-item-qty" role="group" aria-label="Controle quantidade do produto">
+          <button class="qty-btn" aria-label="Diminuir quantidade de ${product.name}">-</button>
+          <span aria-live="polite" aria-atomic="true" style="width: 20px; display:inline-block; text-align:center;">${qty}</span>
+          <button class="qty-btn" aria-label="Aumentar quantidade de ${product.name}">+</button>
+        </div>
+        <div class="cart-item-price">R$ ${(product.price * qty).toFixed(2).replace('.', ',')}</div>
+        <button class="qty-btn" aria-label="Remover ${product.name} do carrinho" style="font-size: 18px; color: #d32f2f;">×</button>
+      `;
+
+      const btnMinus = cartItem.querySelectorAll('.qty-btn')[0];
+      const btnPlus = cartItem.querySelectorAll('.qty-btn')[1];
+      const btnRemove = cartItem.querySelectorAll('.qty-btn')[2];
+
+      btnMinus.addEventListener('click', () => changeQty(pid, -1));
+      btnPlus.addEventListener('click', () => changeQty(pid, +1));
+      btnRemove.addEventListener('click', () => removeFromCart(pid));
+
+      cartItemsEl.appendChild(cartItem);
+    });
+    cartTotalEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    cartCountEl.textContent = Object.values(cart).reduce((acc, val) => acc + val, 0);
+  }
+
+  // Save cart to localStorage
+  function saveCart() {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  }
+
+  // Filter products by brand
+  function filterByBrand(brandId) {
+    clearBrandSelection();
+    const items = brandListEl.querySelectorAll('.brand-item');
+    items.forEach(item => {
+      if (item.querySelector('span')?.textContent.toLowerCase() === brands.find(b => b.id === brandId)?.name.toLowerCase()) {
+        item.setAttribute('aria-pressed', 'true');
+        item.focus();
+      }
+    });
+    const filtered = products.filter(p => p.brand === brandId);
+    renderProducts(filtered);
+    searchInputEl.value = '';
+  }
+
+  // Filter products by search term on name/brand
+  function filterBySearch(query) {
+    if (!query.trim()) {
+      renderProducts(products);
+      clearBrandSelection();
+      return;
+    }
+    query = query.toLowerCase();
+    const filtered = products.filter(p => {
+      const brandName = brands.find(b => b.id === p.brand)?.name.toLowerCase();
+      return p.name.toLowerCase().includes(query) || brandName.includes(query);
+    });
+    renderProducts(filtered);
+    clearBrandSelection();
+  }
+
+  // Open / close cart sidebar
+  function toggleCart(open) {
+    if (open) {
+      cartSidebar.classList.add('open');
+      cartSidebar.focus();
+    } else {
+      cartSidebar.classList.remove('open');
+      openCartBtn.focus();
+    }
+  }
+
+  // Initialize site
+  function init() {
+    renderBrands();
+    renderProducts(products);
+    renderCart();
+
+    // Event listeners
+    searchInputEl.addEventListener('input', e => {
+      filterBySearch(e.target.value);
+    });
+
+    openCartBtn.addEventListener('click', () => toggleCart(true));
+    closeCartBtn.addEventListener('click', () => toggleCart(false));
+
+    // Close cart with ESC key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && cartSidebar.classList.contains('open')) {
+        toggleCart(false);
+      }
+    });
+
+    // Nav cart link opens cart
+    document.getElementById('nav-cart-link').addEventListener('click', e => {
+      e.preventDefault();
+      toggleCart(true);
+    });
+  }
+
+  window.onload = init;
+</script>
+
+</body>
+</html>
